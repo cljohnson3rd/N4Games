@@ -1,0 +1,361 @@
+/* Centipede Game CSS - Standalone (No Imports) */
+
+/* Game Container */
+.centipede-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Game Canvas */
+.centipede-container canvas {
+  border: 3px solid #22d3ee;
+  border-radius: 8px;
+  background: #000;
+  box-shadow:
+    0 8px 32px rgba(34, 211, 238, 0.4),
+    inset 0 0 20px rgba(0, 255, 255, 0.1);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.centipede-container canvas:focus {
+  outline: none;
+  box-shadow: 0 8px 32px rgba(34, 211, 238, 0.7);
+}
+
+/* Game Sidebar */
+.centipede-sidebar {
+  min-width: 280px;
+  max-width: 320px;
+  background: rgba(15, 23, 42, 0.9);
+  padding: 25px;
+  border-radius: 12px;
+  color: white;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-left: 4px solid #22d3ee;
+}
+
+/* Section Headers */
+.centipede-sidebar h3 {
+  color: #22d3ee;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid rgba(34, 211, 238, 0.3);
+  padding-bottom: 8px;
+}
+
+/* Game Info */
+.centipede-info {
+  margin-bottom: 25px;
+}
+
+.centipede-info div {
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Score/Stats Styling */
+.centipede-info #score {
+  color: #22d3ee;
+  font-weight: bold;
+  font-size: 18px;
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.8);
+}
+
+.centipede-info #level {
+  color: #fbbf24;
+  font-weight: bold;
+  font-size: 18px;
+  text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+}
+
+.centipede-info #mushrooms {
+  color: #22c55e;
+  font-weight: bold;
+  font-size: 18px;
+  text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+}
+
+/* Lives Display */
+.centipede-lives {
+  margin-bottom: 25px;
+}
+
+.life-display {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.centipede-container .life-icon {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #22d3ee 0%, #0891b2 100%);
+  display: inline-block;
+  margin: 2px;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    0 0 0 2px rgba(34, 211, 238, 0.3);
+  position: relative;
+  transition: transform 0.2s ease;
+  border: 2px solid #0e7490;
+  border-radius: 0;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.centipede-container .life-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Enemy Icons */
+.centipede-enemies {
+  margin-bottom: 25px;
+}
+
+.enemy-icons {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.enemy-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.enemy-icon:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.enemy-icon.centipede {
+  background: linear-gradient(45deg, #ef4444, #dc2626);
+}
+
+.enemy-icon.centipede::before {
+  content: '🐛';
+  color: white;
+}
+
+.enemy-icon.spider {
+  background: linear-gradient(45deg, #7c3aed, #6d28d9);
+}
+
+.enemy-icon.spider::before {
+  content: '🕷️';
+  font-size: 8px;
+  color: white;
+}
+
+.enemy-icon.flea {
+  background: linear-gradient(45deg, #22c55e, #16a34a);
+}
+
+.enemy-icon.flea::before {
+  content: '🦗';
+  font-size: 8px;
+  color: white;
+}
+
+.enemy-icon.scorpion {
+  background: linear-gradient(45deg, #f59e0b, #d97706);
+}
+
+.enemy-icon.scorpion::before {
+  content: '🦂';
+  font-size: 8px;
+  color: white;
+}
+
+/* Controls Section */
+.centipede-controls {
+  margin-bottom: 25px;
+}
+
+/* Buttons */
+.centipede-controls button {
+  margin: 6px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  min-width: 120px;
+  display: block;
+  width: 100%;
+}
+
+.centipede-controls #start-btn {
+  background: linear-gradient(135deg, #22d3ee 0%, #0891b2 100%);
+  color: white;
+}
+
+.centipede-controls #start-btn:hover {
+  background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(34, 211, 238, 0.4);
+}
+
+.centipede-controls #pause-btn {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: #000;
+}
+
+.centipede-controls #pause-btn:hover {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(251, 191, 36, 0.4);
+}
+
+.centipede-controls #reset-btn {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+}
+
+.centipede-controls #reset-btn:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+}
+
+.centipede-controls button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Instructions */
+.centipede-instructions {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.centipede-instructions div {
+  margin-bottom: 8px;
+}
+
+.centipede-instructions strong {
+  color: #60a5fa;
+  text-shadow: 0 0 5px rgba(96, 165, 250, 0.3);
+}
+
+/* Mushroom field visualization */
+.mushroom-count {
+  display: inline-block;
+  padding: 2px 8px;
+  background: rgba(34, 197, 94, 0.2);
+  border-radius: 12px;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  font-size: 12px;
+  color: #22c55e;
+}
+
+/* Weapon trail effects */
+@keyframes laser-trail {
+  0% { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(0.1); }
+}
+
+.laser-trail {
+  animation: laser-trail 0.3s ease-out;
+}
+
+/* Player zone indicator */
+.player-zone-indicator {
+  position: absolute;
+  bottom: 20%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    #22d3ee 50%,
+    transparent 100%);
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.8);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .centipede-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .centipede-sidebar {
+    min-width: auto;
+    max-width: 600px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .centipede-container canvas {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .centipede-container {
+    padding: 15px;
+  }
+
+  .centipede-sidebar {
+    padding: 20px;
+  }
+}
+
+/* Animation Classes */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.pulse { animation: pulse 2s infinite; }
+.bounce { animation: bounce 1s infinite; }
+
+/* Focus Styles for Accessibility */
+.centipede-controls button:focus,
+.centipede-container canvas:focus {
+  outline: 2px solid #22d3ee;
+  outline-offset: 2px;
+}
+
+/* Selection Styling */
+.centipede-container ::selection {
+  background: rgba(34, 211, 238, 0.3);
+  color: white;
+}

@@ -1,0 +1,820 @@
+/**
+ * Minesweeper Game UX Module Styles - Enhanced Edition
+ */
+
+/* COMPREHENSIVE BORDER/OUTLINE ELIMINATION */
+.minesweeper-container,
+.minesweeper-container:focus,
+.minesweeper-container:active,
+.minesweeper-container:hover,
+.minesweeper-container *,
+.minesweeper-container *:focus,
+.minesweeper-container *:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.minesweeper-container {
+  font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+  background: linear-gradient(135deg, #c0c0c0 0%, #d0d0d0 50%, #c0c0c0 100%);
+  border: 3px solid #c0c0c0 !important;
+  border-style: outset !important;
+  padding: 12px;
+  width: fit-content;
+  margin: 0 auto;
+  position: relative;
+  color: #000000;
+  box-shadow:
+    inset 2px 2px 0 #dfdfdf,
+    inset -2px -2px 0 #808080,
+    2px 2px 8px rgba(0, 0, 0, 0.3);
+  filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+/* Animated background pattern for retro feel */
+.minesweeper-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(128, 128, 128, 0.1) 0%, transparent 30%);
+  z-index: 0;
+  pointer-events: none;
+  animation: classicShine 10s linear infinite;
+}
+
+@keyframes classicShine {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.1; }
+}
+
+.minesweeper-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+.minesweeper-header h2 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #000000;
+  margin: 0;
+  font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+  text-shadow:
+    1px 1px 0 #ffffff,
+    2px 2px 2px rgba(0, 0, 0, 0.2);
+  animation: titleGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  from {
+    text-shadow:
+      1px 1px 0 #ffffff,
+      2px 2px 2px rgba(0, 0, 0, 0.2);
+  }
+  to {
+    text-shadow:
+      1px 1px 0 #ffffff,
+      2px 2px 4px rgba(0, 0, 0, 0.3),
+      0 0 8px rgba(128, 128, 128, 0.3);
+  }
+}
+
+.difficulty-selector select {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+  border: 2px inset #c0c0c0;
+  padding: 6px;
+  font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+  font-size: 12px;
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.difficulty-selector select:hover {
+  background: linear-gradient(135deg, #ffffff 0%, #e8e8e8 100%);
+}
+
+.difficulty-selector select:focus {
+  outline: 2px solid #0078d4 !important;
+  outline-offset: 1px !important;
+}
+
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #c0c0c0 0%, #d0d0d0 100%);
+  border: 3px inset #c0c0c0;
+  padding: 12px;
+  margin-bottom: 12px;
+  min-width: 250px;
+  position: relative;
+  z-index: 1;
+  box-shadow:
+    inset 2px 2px 0 #dfdfdf,
+    inset -2px -2px 0 #808080;
+}
+
+.mine-counter,
+.timer {
+  display: flex;
+  align-items: center;
+}
+
+.digital-display {
+  background: linear-gradient(180deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+  color: #ff0000;
+  font-family: 'Courier New', 'Digital', monospace;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 6px 12px;
+  border: 2px inset #808080;
+  min-width: 50px;
+  text-align: center;
+  letter-spacing: 3px;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    inset 2px 2px 4px rgba(0, 0, 0, 0.8),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.1);
+}
+
+.digital-display::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ff4444, transparent);
+  animation: digitalScan 2s linear infinite;
+}
+
+@keyframes digitalScan {
+  0% { opacity: 0; transform: translateX(-100%); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(100%); }
+}
+
+.game-face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.face-button {
+  width: 48px;
+  height: 48px;
+  font-size: 28px;
+  background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 50%, #a0a0a0 100%);
+  border: 3px outset #c0c0c0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    inset 2px 2px 0 #dfdfdf,
+    inset -2px -2px 0 #808080;
+}
+
+.face-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.3) 50%, transparent 60%);
+  transform: rotate(45deg);
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.face-button:hover::before {
+  opacity: 1;
+  animation: buttonShine 1s ease;
+}
+
+@keyframes buttonShine {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.face-button:hover {
+  background: linear-gradient(135deg, #f0f0f0 0%, #d0d0d0 50%, #b0b0b0 100%);
+}
+
+.face-button:active {
+  border: 3px inset #c0c0c0;
+  background: linear-gradient(135deg, #b0b0b0 0%, #c0c0c0 50%, #d0d0d0 100%);
+  transform: translate(1px, 1px);
+}
+
+.game-board {
+  display: grid;
+  gap: 1px;
+  border: 4px inset #c0c0c0;
+  padding: 4px;
+  background: linear-gradient(135deg, #808080 0%, #909090 100%);
+  width: fit-content;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  box-shadow:
+    inset 2px 2px 4px rgba(0, 0, 0, 0.5),
+    inset -2px -2px 0 #dfdfdf;
+}
+
+.mine-cell {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 50%, #a0a0a0 100%);
+  border: 2px outset #c0c0c0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+  position: relative;
+  box-sizing: border-box;
+  transition: all 0.1s ease;
+
+  /* Enhanced 3D effect */
+  box-shadow:
+    inset 2px 2px 0 #dfdfdf,
+    inset -2px -2px 0 #808080,
+    1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.mine-cell::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.mine-cell:hover {
+  background: linear-gradient(135deg, #f0f0f0 0%, #d0d0d0 50%, #b0b0b0 100%);
+  transform: translate(-0.5px, -0.5px);
+  box-shadow:
+    inset 2px 2px 0 #efefef,
+    inset -2px -2px 0 #707070,
+    2px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.mine-cell:active {
+  border: 2px inset #c0c0c0;
+  background: linear-gradient(135deg, #a0a0a0 0%, #c0c0c0 50%, #e0e0e0 100%);
+  transform: translate(1px, 1px);
+  box-shadow:
+    inset 2px 2px 3px rgba(0, 0, 0, 0.3),
+    inset -1px -1px 0 #dfdfdf;
+}
+
+/* Revealed cells */
+.mine-cell.revealed {
+  background: linear-gradient(135deg, #c0c0c0 0%, #d0d0d0 100%);
+  cursor: default;
+  border: 2px inset #c0c0c0;
+  box-shadow:
+    inset 2px 2px 2px rgba(0, 0, 0, 0.2),
+    inset -1px -1px 0 #dfdfdf;
+  transform: none;
+}
+
+.mine-cell.revealed:hover {
+  background: linear-gradient(135deg, #c0c0c0 0%, #d0d0d0 100%);
+  transform: none;
+  box-shadow:
+    inset 2px 2px 2px rgba(0, 0, 0, 0.2),
+    inset -1px -1px 0 #dfdfdf;
+}
+
+/* Flagged cells */
+.mine-cell.flagged {
+  background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 50%, #a0a0a0 100%);
+  border: 2px outset #c0c0c0;
+  animation: flagWave 0.5s ease-out;
+}
+
+@keyframes flagWave {
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.1) rotate(-5deg); }
+  75% { transform: scale(1.1) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Mine cells */
+.mine-cell.mine {
+  background: linear-gradient(135deg, #ff4444 0%, #ff0000 50%, #cc0000 100%);
+  border: 2px inset #808080;
+  color: #000000;
+  animation: mineReveal 0.3s ease-out;
+}
+
+.mine-cell.mine.exploded {
+  background: linear-gradient(radial-circle, #ffff00 0%, #ff4444 30%, #ff0000 70%, #800000 100%);
+  animation: mineExplosion 0.6s ease-out;
+  box-shadow:
+    0 0 20px #ff0000,
+    inset 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes mineReveal {
+  0% {
+    transform: scale(0);
+    background: linear-gradient(135deg, #c0c0c0 0%, #d0d0d0 100%);
+  }
+  50% {
+    transform: scale(1.2);
+    background: linear-gradient(135deg, #ff8888 0%, #ff4444 50%, #ff0000 100%);
+  }
+  100% {
+    transform: scale(1);
+    background: linear-gradient(135deg, #ff4444 0%, #ff0000 50%, #cc0000 100%);
+  }
+}
+
+@keyframes mineExplosion {
+  0% {
+    transform: scale(1);
+    background: linear-gradient(radial-circle, #ff4444 0%, #ff0000 100%);
+    box-shadow: 0 0 5px #ff0000;
+  }
+  25% {
+    transform: scale(1.3);
+    background: linear-gradient(radial-circle, #ffff00 0%, #ff8800 50%, #ff0000 100%);
+    box-shadow: 0 0 30px #ff4400;
+  }
+  50% {
+    transform: scale(1.5);
+    background: linear-gradient(radial-circle, #ffffff 0%, #ffff00 30%, #ff4444 70%, #ff0000 100%);
+    box-shadow: 0 0 40px #ff0000;
+  }
+  75% {
+    transform: scale(1.2);
+    background: linear-gradient(radial-circle, #ffff88 0%, #ff6644 50%, #cc0000 100%);
+    box-shadow: 0 0 25px #ff0000;
+  }
+  100% {
+    transform: scale(1);
+    background: linear-gradient(radial-circle, #ffff00 0%, #ff4444 30%, #ff0000 70%, #800000 100%);
+    box-shadow: 0 0 20px #ff0000;
+  }
+}
+
+/* Enhanced number styling - classic Minesweeper colors with effects */
+.mine-cell.number-1 {
+  color: #0000ff;
+  text-shadow: 1px 1px 0 #8888ff;
+  font-weight: bold;
+}
+
+.mine-cell.number-2 {
+  color: #008000;
+  text-shadow: 1px 1px 0 #88ff88;
+  font-weight: bold;
+}
+
+.mine-cell.number-3 {
+  color: #ff0000;
+  text-shadow: 1px 1px 0 #ff8888;
+  font-weight: bold;
+}
+
+.mine-cell.number-4 {
+  color: #000080;
+  text-shadow: 1px 1px 0 #8888cc;
+  font-weight: bold;
+}
+
+.mine-cell.number-5 {
+  color: #800000;
+  text-shadow: 1px 1px 0 #cc8888;
+  font-weight: bold;
+}
+
+.mine-cell.number-6 {
+  color: #008080;
+  text-shadow: 1px 1px 0 #88cccc;
+  font-weight: bold;
+}
+
+.mine-cell.number-7 {
+  color: #000000;
+  text-shadow: 1px 1px 0 #888888;
+  font-weight: bold;
+}
+
+.mine-cell.number-8 {
+  color: #808080;
+  text-shadow: 1px 1px 0 #cccccc;
+  font-weight: bold;
+}
+
+.game-controls {
+  margin-top: 15px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.instructions {
+  font-size: 12px;
+  color: #000000;
+  display: flex;
+  justify-content: space-around;
+  max-width: 350px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px;
+  border-radius: 4px;
+  backdrop-filter: blur(2px);
+}
+
+.instructions > div {
+  margin: 0 15px;
+  text-shadow: 1px 1px 0 #ffffff;
+}
+
+.instructions strong {
+  color: #000080;
+  text-shadow: 1px 1px 0 #ccccff;
+}
+
+/* Game overlay */
+.game-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle, rgba(192, 192, 192, 0.9) 0%, rgba(128, 128, 128, 0.95) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+}
+
+.overlay-content {
+  text-align: center;
+  background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 50%, #a0a0a0 100%);
+  padding: 30px;
+  border: 4px outset #c0c0c0;
+  font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+  color: #000000;
+  box-shadow:
+    inset 2px 2px 0 #f0f0f0,
+    inset -2px -2px 0 #808080,
+    4px 4px 12px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: overlayShimmer 3s linear infinite;
+}
+
+@keyframes overlayShimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.overlay-message {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  text-shadow:
+    2px 2px 0 #ffffff,
+    3px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.overlay-stats {
+  font-size: 16px;
+  margin-bottom: 25px;
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+  text-shadow: 1px 1px 0 #ffffff;
+}
+
+.overlay-content button {
+  background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 50%, #a0a0a0 100%);
+  border: 3px outset #c0c0c0;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: 'MS Sans Serif', 'Tahoma', sans-serif;
+  color: #000000;
+  transition: all 0.1s ease;
+  position: relative;
+  z-index: 1;
+  text-shadow: 1px 1px 0 #ffffff;
+  box-shadow:
+    inset 2px 2px 0 #f0f0f0,
+    inset -2px -2px 0 #808080;
+}
+
+.overlay-content button:hover {
+  background: linear-gradient(135deg, #f0f0f0 0%, #d0d0d0 50%, #b0b0b0 100%);
+}
+
+.overlay-content button:active {
+  border: 3px inset #c0c0c0;
+  background: linear-gradient(135deg, #b0b0b0 0%, #c0c0c0 50%, #d0d0d0 100%);
+  transform: translate(1px, 1px);
+  box-shadow:
+    inset 2px 2px 3px rgba(0, 0, 0, 0.3),
+    inset -1px -1px 0 #f0f0f0;
+}
+
+/* Face expressions with enhanced animations */
+.face-button.smile {
+  animation: faceIdle 3s ease-in-out infinite alternate;
+}
+
+@keyframes faceIdle {
+  from { transform: scale(1); }
+  to { transform: scale(1.02); }
+}
+
+.face-button.worried {
+  background: linear-gradient(135deg, #ffff80 0%, #e0e060 50%, #c0c040 100%);
+  animation: faceWorry 0.3s ease-out;
+}
+
+@keyframes faceWorry {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.face-button.cool {
+  background: linear-gradient(135deg, #80ff80 0%, #60e060 50%, #40c040 100%);
+  animation: faceCool 1s ease-in-out infinite alternate;
+}
+
+@keyframes faceCool {
+  from {
+    transform: scale(1);
+    box-shadow: 0 0 5px #40ff40;
+  }
+  to {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #40ff40;
+  }
+}
+
+.face-button.dead {
+  background: linear-gradient(135deg, #ff8080 0%, #e06060 50%, #c04040 100%);
+  animation: faceDead 0.5s ease-out;
+}
+
+@keyframes faceDead {
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.1) rotate(-5deg); }
+  75% { transform: scale(0.9) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Responsive adjustments for expert mode */
+@media (max-width: 900px) {
+  .minesweeper-container {
+    padding: 8px;
+  }
+
+  .mine-cell {
+    width: 22px;
+    height: 22px;
+    font-size: 12px;
+  }
+
+  .game-board {
+    padding: 3px;
+  }
+
+  .game-info {
+    padding: 8px;
+    min-width: 200px;
+  }
+
+  .digital-display {
+    font-size: 18px;
+    padding: 4px 8px;
+  }
+
+  .face-button {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+
+  .instructions {
+    font-size: 10px;
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 650px) {
+  .mine-cell {
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+  }
+
+  .digital-display {
+    font-size: 16px;
+    padding: 3px 6px;
+  }
+
+  .face-button {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+
+  .game-info {
+    padding: 6px;
+  }
+
+  .minesweeper-header h2 {
+    font-size: 18px;
+  }
+
+  .instructions {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 9px;
+  }
+
+  .overlay-content {
+    padding: 20px 15px;
+  }
+
+  .overlay-message {
+    font-size: 22px;
+  }
+}
+
+/* Classic 3D border effects */
+.border-3d-out {
+  border-top: 2px solid #dfdfdf;
+  border-left: 2px solid #dfdfdf;
+  border-bottom: 2px solid #808080;
+  border-right: 2px solid #808080;
+}
+
+.border-3d-in {
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-bottom: 2px solid #dfdfdf;
+  border-right: 2px solid #dfdfdf;
+}
+
+/* Win celebration */
+@keyframes celebrate {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #ffff00;
+  }
+}
+
+.game-info.winning {
+  animation: celebrate 1s ease-in-out infinite;
+}
+
+/* Button pressed state */
+.face-button:active,
+.overlay-content button:active {
+  transform: translateX(1px) translateY(1px);
+}
+
+/* Disable text selection in game area */
+.game-board,
+.game-info,
+.mine-cell {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Custom scrollbar for expert mode on small screens */
+.minesweeper-container::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+}
+
+.minesweeper-container::-webkit-scrollbar-track {
+  background: #c0c0c0;
+  border: 1px inset #c0c0c0;
+}
+
+.minesweeper-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 50%, #a0a0a0 100%);
+  border: 1px outset #c0c0c0;
+}
+
+.minesweeper-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #f0f0f0 0%, #d0d0d0 50%, #b0b0b0 100%);
+}
+
+/* Special container attributes for different difficulties */
+.minesweeper-container[data-difficulty="beginner"] {
+  max-width: 350px;
+}
+
+.minesweeper-container[data-difficulty="intermediate"] {
+  max-width: 550px;
+}
+
+.minesweeper-container[data-difficulty="expert"] {
+  max-width: 900px;
+  overflow-x: auto;
+}
+
+/* Particle overlay for explosions */
+.particle-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Enhanced emoji rendering */
+.mine-cell {
+  font-variant-emoji: emoji;
+}
+
+/* Screen shake effect */
+@keyframes screenShake {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, 1px); }
+  50% { transform: translate(2px, -1px); }
+  75% { transform: translate(-1px, 2px); }
+}
+
+.game-board.shake {
+  animation: screenShake 0.3s ease-in-out;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .mine-cell {
+    border-width: 3px;
+  }
+
+  .digital-display {
+    color: #ffff00;
+    background: #000000;
+  }
+
+  .mine-cell.number-1 { color: #0000ff; }
+  .mine-cell.number-2 { color: #00ff00; }
+  .mine-cell.number-3 { color: #ff0000; }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .mine-cell,
+  .face-button,
+  .digital-display {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,672 @@
+/**
+ * Tetris UX Module Styles - Complete Enhanced Edition with Next Canvas Centering Fix
+ */
+
+/* COMPREHENSIVE BORDER/OUTLINE ELIMINATION */
+.tetris-container,
+.tetris-container:focus,
+.tetris-container:active,
+.tetris-container:hover,
+.tetris-container *,
+.tetris-container *:focus,
+.tetris-container *:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.tetris-container {
+  display: flex;
+  flex-direction: row;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+  border: 2px solid #4a90e2 !important;
+  border-radius: 12px;
+  padding: 15px;
+  font-family: 'Arial', sans-serif;
+  /* OPTIMIZED SPACE: Maximum utilization of available area */
+  width: 560px;
+  height: 650px;
+  position: relative;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* Animated border glow */
+.tetris-container::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #4a90e2, #357abd, #4a90e2, #357abd);
+  background-size: 400% 400%;
+  border-radius: 14px;
+  z-index: -1;
+  animation: borderFlow 3s ease infinite;
+}
+
+@keyframes borderFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.tetris-game {
+  /* OPTIMIZED: Reduced margin to give more space to game board */
+  margin-right: 8px;
+  position: relative;
+}
+
+#tetris-board {
+  border: 3px solid #4a90e2;
+  background: linear-gradient(180deg, #001122 0%, #000511 100%);
+  display: block;
+  border-radius: 8px;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+  box-shadow:
+    0 0 20px rgba(74, 144, 226, 0.3),
+    inset 0 0 20px rgba(0, 17, 34, 0.8);
+
+  /* OPTIMIZED SPACE: Larger game board for better space utilization */
+  width: 375px;
+  height: 600px;
+}
+
+#tetris-board:focus {
+  outline: none !important;
+  border-color: #64b5f6;
+  box-shadow:
+    0 0 25px rgba(74, 144, 226, 0.6),
+    0 0 35px rgba(100, 181, 246, 0.4),
+    inset 0 0 25px rgba(0, 17, 34, 0.8);
+  animation: boardPulse 2s infinite alternate;
+}
+
+@keyframes boardPulse {
+  from {
+    box-shadow:
+      0 0 25px rgba(74, 144, 226, 0.6),
+      0 0 35px rgba(100, 181, 246, 0.4),
+      inset 0 0 25px rgba(0, 17, 34, 0.8);
+  }
+  to {
+    box-shadow:
+      0 0 30px rgba(74, 144, 226, 0.8),
+      0 0 45px rgba(100, 181, 246, 0.6),
+      inset 0 0 30px rgba(0, 17, 34, 0.9);
+  }
+}
+
+.tetris-sidebar {
+  display: flex;
+  flex-direction: column;
+  /* FIXED: Increased width from 135px to 150px to accommodate 120px canvas */
+  width: 150px;
+  gap: 15px;
+  overflow: visible;
+}
+
+.tetris-info {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  border: 2px solid #4a90e2;
+  border-radius: 8px;
+  padding: 15px 12px;
+  position: relative;
+  overflow: visible;
+  min-height: 80px;
+}
+
+.tetris-info::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -100%;
+  width: 100%;
+  height: calc(100% + 4px);
+  background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.3), transparent);
+  animation: infoScan 4s linear infinite;
+}
+
+@keyframes infoScan {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.tetris-info > div {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+  color: #ecf0f1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  line-height: 1.3;
+  overflow: visible;
+}
+
+.tetris-info span {
+  font-weight: bold;
+  color: #4a90e2;
+  text-shadow: 0 0 8px rgba(74, 144, 226, 0.6);
+  animation: scoreGlow 2s ease-in-out infinite alternate;
+  overflow: visible;
+  display: inline-block;
+}
+
+@keyframes scoreGlow {
+  from {
+    color: #4a90e2;
+    text-shadow: 0 0 8px rgba(74, 144, 226, 0.6);
+  }
+  to {
+    color: #64b5f6;
+    text-shadow: 0 0 12px rgba(100, 181, 246, 0.8);
+  }
+}
+
+.tetris-next {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  border: 2px solid #4a90e2;
+  border-radius: 8px;
+  padding: 12px;
+  position: relative;
+  overflow: visible;
+
+  /* FIXED: Center the next piece canvas within container */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.tetris-next > div {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ecf0f1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  line-height: 1.3;
+  overflow: visible;
+}
+
+#tetris-next {
+  border: 2px solid #357abd;
+  background: linear-gradient(135deg, #001122 0%, #000511 100%);
+  border-radius: 6px;
+  box-shadow: inset 0 0 10px rgba(0, 17, 34, 0.8);
+
+  /* OPTIMIZED SPACE: 120px canvas now fits properly in 150px sidebar */
+  width: 120px;
+  height: 120px;
+  display: block;
+  margin: 0 auto;
+}
+
+.tetris-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tetris-controls button {
+  padding: 12px 16px;
+  border: 2px solid #4a90e2;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #357abd 0%, #2980b9 100%);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.tetris-controls button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.tetris-controls button:hover::before {
+  left: 100%;
+}
+
+.tetris-controls button:hover {
+  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+  box-shadow:
+    0 0 15px rgba(74, 144, 226, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  border-color: #64b5f6;
+}
+
+.tetris-controls button:active {
+  background: linear-gradient(135deg, #2980b9 0%, #1f618d 100%);
+  transform: translateY(1px);
+  box-shadow:
+    0 0 8px rgba(74, 144, 226, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#start-btn {
+  background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+  border-color: #2ecc71;
+}
+
+#start-btn:hover {
+  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+  border-color: #58d68d;
+  box-shadow:
+    0 0 15px rgba(46, 204, 113, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+#start-btn:active {
+  background: linear-gradient(135deg, #229954 0%, #1e8449 100%);
+}
+
+#pause-btn {
+  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+  border-color: #f1c40f;
+}
+
+#pause-btn:hover {
+  background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%);
+  border-color: #f4d03f;
+  box-shadow:
+    0 0 15px rgba(241, 196, 15, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+#pause-btn:active {
+  background: linear-gradient(135deg, #e67e22 0%, #d68910 100%);
+}
+
+#reset-btn {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  border-color: #ec7063;
+}
+
+#reset-btn:hover {
+  background: linear-gradient(135deg, #ec7063 0%, #e74c3c 100%);
+  border-color: #f1948a;
+  box-shadow:
+    0 0 15px rgba(231, 76, 60, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+#reset-btn:active {
+  background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+}
+
+.tetris-instructions {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  border: 2px solid #4a90e2;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 12px;
+  color: #ecf0f1;
+  position: relative;
+  overflow: visible;
+}
+
+.tetris-instructions > div {
+  margin-bottom: 4px;
+  line-height: 1.4;
+  overflow: visible;
+}
+
+.tetris-instructions strong {
+  color: #64b5f6;
+  text-shadow: 0 0 5px rgba(100, 181, 246, 0.5);
+}
+
+/* Emergency fix classes (likely not needed with larger container) */
+.tetris-text-fix {
+  height: auto !important;
+  min-height: 18px !important;
+  overflow: visible !important;
+  padding: 1px 0 4px 0 !important;
+  line-height: 1.3 !important;
+  margin-bottom: 6px !important;
+  display: block !important;
+}
+
+/* Specific targeting for common problematic elements */
+.tetris-info [class*="level"],
+.tetris-info [class*="score"],
+.tetris-info [class*="lines"],
+#tetris-level,
+#tetris-score,
+#tetris-lines,
+.level-display,
+.score-display,
+.lines-display {
+  overflow: visible !important;
+  line-height: 1.3 !important;
+  min-height: 18px !important;
+  display: inline-block !important;
+}
+
+/* OPTIMIZED RESPONSIVE: Adjusted for larger sizes */
+@media (max-width: 600px) {
+  .tetris-container {
+    flex-direction: column;
+    width: 380px;
+    height: auto;
+    padding: 10px;
+    min-height: 500px;
+  }
+
+  .tetris-game {
+    margin-right: 0;
+    margin-bottom: 15px;
+    align-self: center;
+  }
+
+  #tetris-board {
+    width: 300px;
+    height: 480px;
+  }
+
+  #tetris-next {
+    width: 90px;
+    height: 90px;
+  }
+
+  .tetris-sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+
+  .tetris-info,
+  .tetris-next,
+  .tetris-controls,
+  .tetris-instructions {
+    flex: 1 1 140px;
+    min-width: 140px;
+    min-height: 70px;
+    overflow: visible;
+  }
+
+  .tetris-controls {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .tetris-controls button {
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .tetris-info > div {
+    font-size: 13px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+}
+
+/* Enhanced line clearing animation */
+@keyframes lineClearEffect {
+  0% {
+    background-color: rgba(255, 255, 255, 0);
+    transform: scaleX(1);
+  }
+  25% {
+    background-color: rgba(255, 215, 0, 0.8);
+    transform: scaleX(1.02);
+  }
+  50% {
+    background-color: rgba(255, 255, 255, 1);
+    transform: scaleX(1.05);
+  }
+  75% {
+    background-color: rgba(255, 100, 0, 0.8);
+    transform: scaleX(1.02);
+  }
+  100% {
+    background-color: transparent;
+    transform: scaleX(1);
+  }
+}
+
+.line-clear {
+  animation: lineClearEffect 0.5s ease-in-out;
+}
+
+/* Focus styles for accessibility */
+.tetris-controls button:focus {
+  outline: 3px solid rgba(74, 144, 226, 0.8) !important;
+  outline-offset: 2px !important;
+}
+
+/* Enhanced game over effect */
+.game-over-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(231, 76, 60, 0.2) 0%, rgba(0, 0, 0, 0.9) 70%);
+  color: #ff6b6b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  animation: gameOverPulse 2s ease-in-out infinite alternate;
+  border-radius: 8px;
+}
+
+@keyframes gameOverPulse {
+  from {
+    background: radial-gradient(circle, rgba(231, 76, 60, 0.2) 0%, rgba(0, 0, 0, 0.9) 70%);
+  }
+  to {
+    background: radial-gradient(circle, rgba(231, 76, 60, 0.4) 0%, rgba(0, 0, 0, 0.95) 70%);
+  }
+}
+
+/* Button press animation */
+@keyframes buttonPress {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+.tetris-controls button:active {
+  animation: buttonPress 0.1s ease;
+}
+
+/* Level up celebration effect */
+@keyframes levelUpCelebration {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.05) rotate(1deg);
+  }
+  75% {
+    transform: scale(1.05) rotate(-1deg);
+  }
+}
+
+.level-up {
+  animation: levelUpCelebration 0.6s ease-in-out;
+}
+
+/* Subtle background animation */
+.tetris-container {
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(74, 144, 226, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(100, 181, 246, 0.05) 0%, transparent 50%);
+  animation: backgroundShift 10s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundShift {
+  0% {
+    background-position: 0% 0%, 100% 100%;
+  }
+  100% {
+    background-position: 100% 100%, 0% 0%;
+  }
+}
+
+/* Enhanced hover effects for game area */
+.tetris-game:hover #tetris-board {
+  box-shadow:
+    0 0 30px rgba(74, 144, 226, 0.4),
+    inset 0 0 25px rgba(0, 17, 34, 0.9);
+}
+
+/* Custom scrollbar */
+.tetris-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tetris-container::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+
+.tetris-container::-webkit-scrollbar-thumb {
+  background: #4a90e2;
+  border-radius: 4px;
+}
+
+.tetris-container::-webkit-scrollbar-thumb:hover {
+  background: #64b5f6;
+}
+
+/* Disable text selection in game area */
+.tetris-container {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Loading state animation */
+.tetris-container.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.tetris-container.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.2), transparent);
+  animation: loadingSweep 2s ease-in-out infinite;
+}
+
+@keyframes loadingSweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Particle effect overlay styling */
+.particle-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Score increase animation */
+@keyframes scoreIncrease {
+  0% {
+    transform: scale(1);
+    color: #4a90e2;
+  }
+  50% {
+    transform: scale(1.2);
+    color: #ffd700;
+  }
+  100% {
+    transform: scale(1);
+    color: #4a90e2;
+  }
+}
+
+.score-boost {
+  animation: scoreIncrease 0.4s ease-in-out;
+}
+
+/* Enhanced shadow effects */
+.tetris-container {
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3));
+}
+
+/* CRT effect overlay */
+.tetris-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(74, 144, 226, 0.02) 2px,
+      rgba(74, 144, 226, 0.02) 4px
+    );
+  pointer-events: none;
+  z-index: 20;
+  border-radius: 12px;
+  opacity: 0.6;
+  animation: scanLines 0.1s linear infinite;
+}
+
+@keyframes scanLines {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(4px); }
+}
+
+/* Additional safety measures */
+.tetris-container * {
+  box-sizing: border-box;
+}
+
+.tetris-container div:not(#tetris-board):not(#tetris-next) {
+  overflow-y: visible;
+}
+
+/*
+ * SIZING FIX SUMMARY:
+ *
+ * Changed .tetris-sidebar width from 135px to 150px
+ *
+ * Math that now works:
+ * - Container: 150px wide
+ * - Padding: 12px × 2 = 24px
+ * - Available space: 150px - 24px = 126px
+ * - Canvas: 120px (fits with 3px margin on each side)
+ *
+ * The flexbox centering now has proper space to work:
+ * - display: flex
+ * - align-items: center (horizontal centering)
+ * - justify-content: center (vertical centering)
+ *
+ * Canvas is perfectly centered within the Next rectangle!
+ */

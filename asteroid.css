@@ -1,0 +1,599 @@
+/**
+ * Asteroids UX Module Styles - Enhanced Edition
+ */
+
+.asteroids-container {
+  display: flex;
+  flex-direction: row;
+  background: radial-gradient(ellipse at center, #000033 0%, #000011 50%, #000000 100%);
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  padding: 10px;
+  font-family: 'Courier New', monospace;
+  width: 950px;
+  height: 620px;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated space dust effect */
+.asteroids-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+    radial-gradient(2px 2px at 40px 70px, #aaaaff, transparent),
+    radial-gradient(1px 1px at 90px 40px, #ffaaaa, transparent),
+    radial-gradient(1px 1px at 130px 80px, #ffffff, transparent),
+    radial-gradient(2px 2px at 160px 30px, #ffffff, transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: starMove 20s linear infinite;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes starMove {
+  from { background-position: 0 0; }
+  to { background-position: -200px 0; }
+}
+
+/* Pulsing border effect */
+.asteroids-container {
+  border-color: #ffffff;
+  animation: borderPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes borderPulse {
+  from {
+    border-color: #ffffff;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+  to {
+    border-color: #aaaaff;
+    box-shadow: 0 0 20px rgba(170, 170, 255, 0.6);
+  }
+}
+
+.asteroids-game {
+  margin-right: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+#asteroids-board {
+  border: 2px solid #ffffff;
+  background: linear-gradient(135deg, #000011 0%, #000022 50%, #000011 100%);
+  display: block;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+#asteroids-board:focus {
+  outline: none;
+  border-color: #aaaaff;
+  box-shadow:
+    0 0 15px rgba(255, 255, 255, 0.7),
+    inset 0 0 20px rgba(170, 170, 255, 0.1);
+  animation: canvasGlow 2s infinite alternate;
+}
+
+@keyframes canvasGlow {
+  from {
+    box-shadow:
+      0 0 15px rgba(255, 255, 255, 0.7),
+      inset 0 0 20px rgba(170, 170, 255, 0.1);
+  }
+  to {
+    box-shadow:
+      0 0 25px rgba(255, 255, 255, 0.9),
+      0 0 35px rgba(170, 170, 255, 0.5),
+      inset 0 0 30px rgba(170, 170, 255, 0.2);
+  }
+}
+
+.asteroids-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  gap: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+.asteroids-info {
+  background: linear-gradient(135deg, #111122 0%, #000011 50%, #111122 100%);
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  padding: 8px;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.asteroids-info::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -100%;
+  width: 100%;
+  height: calc(100% + 4px);
+  background: linear-gradient(90deg, transparent, rgba(170, 170, 255, 0.3), transparent);
+  animation: scanLine 4s linear infinite;
+}
+
+@keyframes scanLine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.asteroids-info > div {
+  margin-bottom: 5px;
+  font-size: 14px;
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 3px;
+}
+
+.asteroids-info > div:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.asteroids-info span {
+  font-weight: bold;
+  color: #aaaaff;
+  text-shadow: 0 0 5px currentColor;
+  animation: dataGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes dataGlow {
+  from {
+    color: #aaaaff;
+    text-shadow: 0 0 5px currentColor;
+  }
+  to {
+    color: #ccccff;
+    text-shadow: 0 0 10px currentColor, 0 0 15px rgba(170, 170, 255, 0.5);
+  }
+}
+
+.asteroids-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.asteroids-controls button {
+  padding: 8px 12px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #333333 0%, #222222 50%, #333333 100%);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: 'Courier New', monospace;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.asteroids-controls button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.asteroids-controls button:hover::before {
+  left: 100%;
+}
+
+.asteroids-controls button:hover {
+  background: linear-gradient(135deg, #555555 0%, #444444 50%, #555555 100%);
+  box-shadow:
+    0 0 15px rgba(255, 255, 255, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+  border-color: #aaaaff;
+}
+
+.asteroids-controls button:active {
+  background: linear-gradient(135deg, #222222 0%, #111111 50%, #222222 100%);
+  transform: translateY(1px);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+#ast-start-btn {
+  background: linear-gradient(135deg, #004466 0%, #002233 50%, #004466 100%);
+  border-color: #0088cc;
+  color: #00aaff;
+}
+
+#ast-start-btn:hover {
+  background: linear-gradient(135deg, #006688 0%, #003344 50%, #006688 100%);
+  box-shadow:
+    0 0 15px rgba(0, 170, 255, 0.7),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+  color: #00ccff;
+}
+
+#ast-pause-btn {
+  background: linear-gradient(135deg, #664400 0%, #332200 50%, #664400 100%);
+  color: #ffcc00;
+  border-color: #ffcc00;
+}
+
+#ast-pause-btn:hover {
+  background: linear-gradient(135deg, #886600 0%, #443300 50%, #886600 100%);
+  box-shadow:
+    0 0 15px rgba(255, 204, 0, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+  color: #ffdd00;
+}
+
+#ast-reset-btn {
+  background: linear-gradient(135deg, #660033 0%, #330011 50%, #660033 100%);
+  color: #ff6699;
+  border-color: #ff6699;
+}
+
+#ast-reset-btn:hover {
+  background: linear-gradient(135deg, #880044 0%, #440022 50%, #880044 100%);
+  box-shadow:
+    0 0 15px rgba(255, 102, 153, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+  color: #ff77aa;
+}
+
+.asteroids-instructions {
+  background: linear-gradient(135deg, #111122 0%, #000011 50%, #111122 100%);
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 11px;
+  color: #ffffff;
+  position: relative;
+}
+
+.asteroids-instructions > div {
+  margin-bottom: 3px;
+  position: relative;
+  z-index: 1;
+  color: #cccccc;
+}
+
+.asteroids-instructions > div:first-child {
+  color: #ffffff;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 5px;
+}
+
+.asteroids-instructions strong {
+  color: #aaaaff;
+  text-shadow: 0 0 3px currentColor;
+}
+
+/* Hyperspace effect overlay */
+.asteroids-container.hyperspace {
+  animation: hyperspaceEffect 0.5s ease-in-out;
+}
+
+@keyframes hyperspaceEffect {
+  0% {
+    transform: scale(1);
+    filter: blur(0px);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: blur(2px);
+  }
+  100% {
+    transform: scale(1);
+    filter: blur(0px);
+  }
+}
+
+/* Navigation computer styling with holographic effect */
+.asteroids-info {
+  background:
+    linear-gradient(135deg, transparent 0%, rgba(170, 170, 255, 0.1) 50%, transparent 100%),
+    linear-gradient(135deg, #111122 0%, #000011 50%, #111122 100%);
+}
+
+/* Responsive adjustments for smaller containers */
+@media (max-width: 1000px) {
+  .asteroids-container {
+    flex-direction: column;
+    width: 820px;
+    height: auto;
+  }
+
+  .asteroids-game {
+    margin-right: 0;
+    margin-bottom: 10px;
+    align-self: center;
+  }
+
+  .asteroids-sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .asteroids-info,
+  .asteroids-controls,
+  .asteroids-instructions {
+    flex: 1 1 120px;
+    min-width: 120px;
+  }
+}
+
+/* Focus styles for accessibility */
+.asteroids-controls button:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Canvas container positioning */
+.asteroids-game {
+  position: relative;
+}
+
+/* Game over overlay with asteroid destruction effect */
+.asteroids-game-over-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.9) 70%);
+  color: #ff0000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  animation: destructionPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes destructionPulse {
+  from {
+    text-shadow: 0 0 10px #ff0000;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.9) 70%);
+  }
+  to {
+    text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff6666;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.9) 70%);
+  }
+}
+
+/* Enhanced button interaction */
+@keyframes buttonActivate {
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(0.95) rotate(-1deg); }
+  75% { transform: scale(1.05) rotate(1deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.asteroids-controls button:active {
+  animation: buttonActivate 0.2s ease;
+}
+
+/* Ship navigation display effect */
+.asteroids-info::before {
+  content: '▲ ● ▼';
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 8px;
+  color: rgba(170, 170, 255, 0.4);
+  animation: navIndicator 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes navIndicator {
+  0% {
+    color: rgba(170, 170, 255, 0.4);
+    transform: rotate(0deg);
+  }
+  50% {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    color: rgba(170, 170, 255, 0.4);
+    transform: rotate(360deg);
+  }
+}
+
+/* Subtle screen static effect */
+.asteroids-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1px,
+      rgba(255, 255, 255, 0.02) 1px,
+      rgba(255, 255, 255, 0.02) 2px
+    );
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.5;
+  animation: staticFlicker 0.1s linear infinite;
+}
+
+@keyframes staticFlicker {
+  0% { opacity: 0.5; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0.5; }
+}
+
+
+/* Responsive adjustments for smaller containers */
+@media (max-width: 1000px) {
+  .asteroids-container {
+    flex-direction: column;
+    width: 820px;
+    height: auto;
+  }
+
+  .asteroids-game {
+    margin-right: 0;
+    margin-bottom: 10px;
+    align-self: center;
+  }
+
+  .asteroids-sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .asteroids-info,
+  .asteroids-controls,
+  .asteroids-instructions {
+    flex: 1 1 120px;
+    min-width: 120px;
+  }
+}
+
+/* Focus styles for accessibility */
+.asteroids-controls button:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Canvas container positioning */
+.asteroids-game {
+  position: relative;
+}
+
+/* Game over overlay (if needed) */
+.asteroids-game-over-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #ff0000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Space theme */
+.asteroids-container {
+  background: radial-gradient(circle, #000022 0%, #000011 50%, #000000 100%);
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Glowing text effect */
+.asteroids-info span,
+.asteroids-instructions strong {
+  text-shadow: 0 0 3px currentColor;
+}
+
+/* Button glow animation */
+@keyframes buttonGlow {
+  0% { box-shadow: 0 0 5px currentColor; }
+  50% { box-shadow: 0 0 15px currentColor; }
+  100% { box-shadow: 0 0 5px currentColor; }
+}
+
+.asteroids-controls button:hover {
+  animation: buttonGlow 1s infinite;
+}
+
+/* Starfield border effect */
+.asteroids-container::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ffffff, transparent, #ffffff);
+  border-radius: 10px;
+  z-index: -1;
+  opacity: 0.2;
+}
+
+/* Canvas border glow */
+#asteroids-board {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Hyperspace effect simulation */
+@keyframes hyperspace {
+  0% {
+    box-shadow: 0 0 10px #ffffff;
+    border-color: #ffffff;
+  }
+  50% {
+    box-shadow: 0 0 30px #00aaff;
+    border-color: #00aaff;
+  }
+  100% {
+    box-shadow: 0 0 10px #ffffff;
+    border-color: #ffffff;
+  }
+}
+
+/* Asteroid field theme */
+.asteroids-info {
+  background: linear-gradient(135deg, #111122 0%, #222233 100%);
+}
+
+.asteroids-instructions {
+  background: linear-gradient(135deg, #111122 0%, #222233 100%);
+}
+
+/* Deep space typography */
+.asteroids-container {
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+/* Navigation computer styling */
+.asteroids-info > div {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 3px;
+}
+
+.asteroids-info > div:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Ship controls styling */
+.asteroids-instructions > div {
+  color: #cccccc;
+}
+
+.asteroids-instructions > div:first-child {
+  color: #ffffff;
+  margin-bottom: 8px;
+}

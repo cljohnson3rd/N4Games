@@ -1,0 +1,693 @@
+/**
+ * Enhanced Missile Command UX Module Styles - Professional Gaming Edition
+ * Features: Military radar effects, missile trails, city destruction animations, command center styling
+ */
+
+/* COMPREHENSIVE BORDER/OUTLINE ELIMINATION */
+.missile-command-container,
+.missile-command-container:focus,
+.missile-command-container:active,
+.missile-command-container:hover,
+.missile-command-container *,
+.missile-command-container *:focus,
+.missile-command-container *:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.missile-command-container {
+  display: flex;
+  flex-direction: row;
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  border: 2px solid #22c55e !important;
+  border-radius: 12px;
+  padding: 15px;
+  font-family: 'Courier New', monospace;
+  width: 600px;
+  height: 650px;
+  position: relative;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+/* Animated border glow - Military theme */
+.missile-command-container::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #22c55e, #16a34a, #22c55e, #16a34a);
+  background-size: 400% 400%;
+  border-radius: 14px;
+  z-index: -1;
+  animation: militaryBorderFlow 3s ease infinite;
+}
+
+@keyframes militaryBorderFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.missile-command-game {
+  margin-right: 8px;
+  position: relative;
+}
+
+#missile-command-board {
+  border: 3px solid #22c55e;
+  background: linear-gradient(180deg, #000000 0%, #001122 60%, #003300 100%);
+  display: block;
+  border-radius: 8px;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+  box-shadow:
+    0 0 20px rgba(34, 197, 94, 0.3),
+    inset 0 0 20px rgba(0, 17, 34, 0.8);
+  width: 420px;
+  height: 600px;
+}
+
+#missile-command-board:focus {
+  outline: none !important;
+  border-color: #4ade80;
+  box-shadow:
+    0 0 25px rgba(34, 197, 94, 0.6),
+    0 0 35px rgba(74, 222, 128, 0.4),
+    inset 0 0 25px rgba(0, 17, 34, 0.8);
+  animation: radarPulse 2s infinite alternate;
+}
+
+@keyframes radarPulse {
+  from {
+    box-shadow:
+      0 0 25px rgba(34, 197, 94, 0.6),
+      0 0 35px rgba(74, 222, 128, 0.4),
+      inset 0 0 25px rgba(0, 17, 34, 0.8);
+  }
+  to {
+    box-shadow:
+      0 0 30px rgba(34, 197, 94, 0.8),
+      0 0 45px rgba(74, 222, 128, 0.6),
+      inset 0 0 30px rgba(0, 17, 34, 0.9);
+  }
+}
+
+.missile-command-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  gap: 15px;
+  overflow: visible;
+}
+
+.missile-command-info {
+  background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
+  border: 2px solid #22c55e;
+  border-radius: 8px;
+  padding: 15px 12px;
+  position: relative;
+  overflow: visible;
+  min-height: 80px;
+}
+
+.missile-command-info::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -100%;
+  width: 100%;
+  height: calc(100% + 4px);
+  background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.3), transparent);
+  animation: radarScan 4s linear infinite;
+}
+
+@keyframes radarScan {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.missile-command-info > div {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+  color: #dcfce7;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  line-height: 1.3;
+  overflow: visible;
+  font-family: 'Courier New', monospace;
+}
+
+.missile-command-info span {
+  font-weight: bold;
+  color: #22c55e;
+  text-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+  animation: dataGlow 2s ease-in-out infinite alternate;
+  overflow: visible;
+  display: inline-block;
+}
+
+@keyframes dataGlow {
+  from {
+    color: #22c55e;
+    text-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+  }
+  to {
+    color: #4ade80;
+    text-shadow: 0 0 12px rgba(74, 222, 128, 0.8);
+  }
+}
+
+.missile-command-cities {
+  background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
+  border: 2px solid #22c55e;
+  border-radius: 8px;
+  padding: 12px;
+  position: relative;
+  overflow: visible;
+  text-align: center;
+}
+
+.missile-command-cities > div {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #dcfce7;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  line-height: 1.3;
+  overflow: visible;
+  font-family: 'Courier New', monospace;
+}
+
+.city-display {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  flex-wrap: wrap;
+}
+
+.city-icon {
+  width: 12px;
+  height: 16px;
+  background: linear-gradient(45deg, #22c55e, #16a34a);
+  border: 1px solid #4ade80;
+  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+  animation: cityPulse 3s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
+}
+
+.city-icon.destroyed {
+  background: linear-gradient(45deg, #dc2626, #991b1b);
+  border-color: #ef4444;
+  box-shadow: 0 0 6px rgba(220, 38, 38, 0.6);
+  animation: cityDestroyed 0.5s ease-out;
+}
+
+@keyframes cityPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+@keyframes cityDestroyed {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.5); filter: brightness(2); }
+  100% { transform: scale(0.8); filter: brightness(0.5); }
+}
+
+.missile-command-weapons {
+  background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
+  border: 2px solid #22c55e;
+  border-radius: 8px;
+  padding: 12px;
+  position: relative;
+  overflow: visible;
+  text-align: center;
+}
+
+.missile-command-weapons > div {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #dcfce7;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  line-height: 1.3;
+  overflow: visible;
+  font-family: 'Courier New', monospace;
+}
+
+.weapon-status {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.ammo-bar {
+  width: 100%;
+  height: 8px;
+  background: #1f2937;
+  border: 1px solid #22c55e;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.ammo-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  transition: width 0.3s ease;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
+}
+
+.missile-command-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.missile-command-controls button {
+  padding: 12px 16px;
+  border: 2px solid #22c55e;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.missile-command-controls button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.missile-command-controls button:hover::before {
+  left: 100%;
+}
+
+.missile-command-controls button:hover {
+  background: linear-gradient(135deg, #22c55e 0%, #047857 100%);
+  box-shadow:
+    0 0 15px rgba(34, 197, 94, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  border-color: #4ade80;
+}
+
+.missile-command-controls button:active {
+  background: linear-gradient(135deg, #065f46 0%, #064e3b 100%);
+  transform: translateY(1px);
+  box-shadow:
+    0 0 8px rgba(34, 197, 94, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#start-btn {
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  border-color: #22c55e;
+}
+
+#start-btn:hover {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  border-color: #4ade80;
+}
+
+#pause-btn {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  border-color: #fbbf24;
+}
+
+#pause-btn:hover {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  border-color: #fde047;
+  box-shadow:
+    0 0 15px rgba(251, 191, 36, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+#reset-btn {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  border-color: #ef4444;
+}
+
+#reset-btn:hover {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border-color: #f87171;
+  box-shadow:
+    0 0 15px rgba(239, 68, 68, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+.missile-command-instructions {
+  background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
+  border: 2px solid #22c55e;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 12px;
+  color: #dcfce7;
+  position: relative;
+  overflow: visible;
+  font-family: 'Courier New', monospace;
+}
+
+.missile-command-instructions > div {
+  margin-bottom: 4px;
+  line-height: 1.4;
+  overflow: visible;
+}
+
+.missile-command-instructions strong {
+  color: #4ade80;
+  text-shadow: 0 0 5px rgba(74, 222, 128, 0.5);
+}
+
+/* Missile trail effect */
+@keyframes missileTrail {
+  0% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% { 
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+.missile-trail {
+  animation: missileTrail 1s ease-out forwards;
+}
+
+/* Explosion effect */
+@keyframes explosionRing {
+  0% { 
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% { 
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.explosion-ring {
+  animation: explosionRing 1s ease-out;
+}
+
+/* Chain explosion effect */
+@keyframes chainExplosion {
+  0% { 
+    transform: scale(0) rotate(0deg);
+    opacity: 1;
+  }
+  25% { 
+    transform: scale(0.5) rotate(90deg);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1) rotate(180deg);
+    opacity: 0.8;
+  }
+  75% { 
+    transform: scale(1.5) rotate(270deg);
+    opacity: 0.4;
+  }
+  100% { 
+    transform: scale(2) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.chain-explosion {
+  animation: chainExplosion 0.8s ease-out;
+}
+
+/* Radar sweep effect */
+@keyframes radarSweep {
+  0% { 
+    transform: rotate(0deg);
+    opacity: 0.8;
+  }
+  100% { 
+    transform: rotate(360deg);
+    opacity: 0.2;
+  }
+}
+
+.radar-sweep {
+  animation: radarSweep 4s linear infinite;
+}
+
+/* Warning alert */
+@keyframes warningAlert {
+  0%, 100% { 
+    background-color: rgba(220, 38, 38, 0.2);
+    border-color: #dc2626;
+  }
+  50% { 
+    background-color: rgba(239, 68, 68, 0.4);
+    border-color: #ef4444;
+  }
+}
+
+.warning-alert {
+  animation: warningAlert 0.5s ease-in-out infinite;
+}
+
+/* Crosshair targeting */
+@keyframes crosshairTarget {
+  0%, 100% { 
+    transform: scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: scale(1.2) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+.crosshair-target {
+  animation: crosshairTarget 1s ease-in-out infinite;
+}
+
+/* Game over overlay */
+.game-over-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(220, 38, 38, 0.3) 0%, rgba(0, 0, 0, 0.9) 70%);
+  color: #fca5a5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  animation: gameOverPulse 2s ease-in-out infinite alternate;
+  border-radius: 8px;
+}
+
+@keyframes gameOverPulse {
+  from {
+    background: radial-gradient(circle, rgba(220, 38, 38, 0.3) 0%, rgba(0, 0, 0, 0.9) 70%);
+  }
+  to {
+    background: radial-gradient(circle, rgba(220, 38, 38, 0.5) 0%, rgba(0, 0, 0, 0.95) 70%);
+  }
+}
+
+/* Level complete effect */
+@keyframes levelComplete {
+  0% { filter: hue-rotate(0deg) brightness(1); }
+  25% { filter: hue-rotate(90deg) brightness(1.2); }
+  50% { filter: hue-rotate(180deg) brightness(1.4); }
+  75% { filter: hue-rotate(270deg) brightness(1.2); }
+  100% { filter: hue-rotate(360deg) brightness(1); }
+}
+
+.level-complete {
+  animation: levelComplete 2s ease-in-out;
+}
+
+/* Enhanced particle system */
+.particle-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Score increase animation */
+@keyframes scoreIncrease {
+  0% {
+    transform: scale(1) translateY(0);
+    color: #22c55e;
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3) translateY(-10px);
+    color: #ffffff;
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(-20px);
+    color: #22c55e;
+    opacity: 0;
+  }
+}
+
+.score-boost {
+  animation: scoreIncrease 0.6s ease-out;
+}
+
+/* Enhanced shadow effects */
+.missile-command-container {
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3));
+}
+
+/* Military command center ambience */
+.missile-command-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.03) 0%, transparent 30%),
+    radial-gradient(circle at 80% 20%, rgba(4, 120, 87, 0.03) 0%, transparent 30%),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 150px,
+      rgba(34, 197, 94, 0.01) 150px,
+      rgba(34, 197, 94, 0.01) 151px
+    );
+  pointer-events: none;
+  z-index: 20;
+  border-radius: 12px;
+  opacity: 0.8;
+  animation: militaryAmbienceShift 8s ease-in-out infinite alternate;
+}
+
+@keyframes militaryAmbienceShift {
+  0% {
+    background:
+      radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.03) 0%, transparent 30%),
+      radial-gradient(circle at 80% 20%, rgba(4, 120, 87, 0.03) 0%, transparent 30%);
+  }
+  100% {
+    background:
+      radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.03) 0%, transparent 30%),
+      radial-gradient(circle at 20% 80%, rgba(4, 120, 87, 0.03) 0%, transparent 30%);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 650px) {
+  .missile-command-container {
+    flex-direction: column;
+    width: 440px;
+    height: auto;
+    padding: 10px;
+  }
+
+  .missile-command-game {
+    margin-right: 0;
+    margin-bottom: 15px;
+    align-self: center;
+  }
+
+  #missile-command-board {
+    width: 370px;
+    height: 520px;
+  }
+
+  .missile-command-sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .missile-command-info,
+  .missile-command-cities,
+  .missile-command-weapons,
+  .missile-command-controls,
+  .missile-command-instructions {
+    flex: 1 1 150px;
+    min-width: 150px;
+  }
+}
+
+/* Accessibility */
+.missile-command-container {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.missile-command-controls button:focus {
+  outline: 3px solid rgba(34, 197, 94, 0.8) !important;
+  outline-offset: 2px !important;
+}
+
+/* Missile silo effects */
+@keyframes siloLaunch {
+  0% { 
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% { 
+    transform: scale(1.3);
+    filter: brightness(2);
+  }
+  100% { 
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+.silo-launch {
+  animation: siloLaunch 0.3s ease-out;
+}
+
+/* Incoming missile warning */
+@keyframes incomingWarning {
+  0%, 100% { 
+    background: rgba(220, 38, 38, 0.1);
+    transform: scale(1);
+  }
+  50% { 
+    background: rgba(239, 68, 68, 0.3);
+    transform: scale(1.02);
+  }
+}
+
+.incoming-warning {
+  animation: incomingWarning 1s ease-in-out infinite;
+}

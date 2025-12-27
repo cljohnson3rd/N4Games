@@ -1,0 +1,431 @@
+/* Galaga Game CSS - Standalone (No Imports) */
+
+/* Game Container */
+.galaga-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Game Canvas */
+.galaga-container canvas {
+  border: 3px solid #60a5fa;
+  border-radius: 8px;
+  background:
+    radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(2px 2px at 40% 70%, white, transparent),
+    radial-gradient(1px 1px at 90% 40%, white, transparent),
+    radial-gradient(1px 1px at 50% 50%, white, transparent),
+    linear-gradient(135deg, #000011 0%, #0a0a23 100%);
+  background-size: 200px 200px, 150px 150px, 100px 100px, 300px 300px, 100% 100%;
+  box-shadow:
+    0 8px 32px rgba(96, 165, 250, 0.4),
+    inset 0 0 50px rgba(0, 20, 60, 0.6);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.galaga-container canvas:focus {
+  outline: none;
+  box-shadow: 0 8px 32px rgba(96, 165, 250, 0.7);
+}
+
+/* Game Sidebar */
+.galaga-sidebar {
+  min-width: 280px;
+  max-width: 320px;
+  background: rgba(15, 15, 35, 0.95);
+  padding: 25px;
+  border-radius: 12px;
+  color: white;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  border-left: 4px solid #60a5fa;
+}
+
+/* Section Headers */
+.galaga-sidebar h3 {
+  color: #60a5fa;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid rgba(96, 165, 250, 0.3);
+  padding-bottom: 8px;
+}
+
+/* Game Info */
+.galaga-info {
+  margin-bottom: 25px;
+}
+
+.galaga-info div {
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Score/Stats Styling */
+.galaga-info #score {
+  color: #60a5fa;
+  font-weight: bold;
+  font-size: 18px;
+  text-shadow: 0 0 15px rgba(96, 165, 250, 0.8);
+}
+
+.galaga-info #stage {
+  color: #22c55e;
+  font-weight: bold;
+  font-size: 18px;
+  text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+}
+
+.galaga-info #weapon {
+  color: #fbbf24;
+  font-weight: bold;
+  font-size: 18px;
+  text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+  text-transform: capitalize;
+}
+
+/* Lives Display */
+.galaga-lives {
+  margin-bottom: 25px;
+}
+
+.life-display {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.galaga-container .life-icon {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  display: inline-block;
+  margin: 2px;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    0 0 0 2px rgba(96, 165, 250, 0.3);
+  position: relative;
+  transition: transform 0.2s ease;
+  border: 2px solid #2563eb;
+  border-radius: 0;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.galaga-container .life-icon:hover {
+  transform: scale(1.1);
+}
+
+.galaga-container .life-icon::after {
+  content: '🚀';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(180deg);
+  font-size: 10px;
+}
+
+/* Weapons Display */
+.galaga-weapons {
+  margin-bottom: 25px;
+}
+
+.weapon-icons {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.weapon-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  position: relative;
+  transition: all 0.3s ease;
+  background-size: cover;
+  background-position: center;
+}
+
+.weapon-icon:hover {
+  transform: scale(1.1);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.weapon-icon.laser {
+  background: linear-gradient(45deg, #60a5fa, #3b82f6);
+}
+
+.weapon-icon.laser::before {
+  content: '━';
+  color: white;
+  font-size: 16px;
+  transform: rotate(90deg);
+}
+
+.weapon-icon.spread {
+  background: linear-gradient(45deg, #fbbf24, #f59e0b);
+}
+
+.weapon-icon.spread::before {
+  content: '╱━╲';
+  color: white;
+  font-size: 8px;
+  line-height: 1;
+}
+
+.weapon-icon.rapid {
+  background: linear-gradient(45deg, #22c55e, #16a34a);
+}
+
+.weapon-icon.rapid::before {
+  content: '┃┃┃';
+  color: white;
+  font-size: 8px;
+  letter-spacing: -1px;
+}
+
+/* Controls Section */
+.galaga-controls {
+  margin-bottom: 25px;
+}
+
+/* Buttons */
+.galaga-controls button {
+  margin: 6px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  min-width: 120px;
+  display: block;
+  width: 100%;
+}
+
+.galaga-controls #start-btn {
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  color: white;
+}
+
+.galaga-controls #start-btn:hover {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(96, 165, 250, 0.4);
+}
+
+.galaga-controls #pause-btn {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: #000;
+}
+
+.galaga-controls #pause-btn:hover {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(251, 191, 36, 0.4);
+}
+
+.galaga-controls #reset-btn {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+}
+
+.galaga-controls #reset-btn:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+}
+
+.galaga-controls button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Instructions */
+.galaga-instructions {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.galaga-instructions div {
+  margin-bottom: 8px;
+}
+
+.galaga-instructions strong {
+  color: #60a5fa;
+  text-shadow: 0 0 5px rgba(96, 165, 250, 0.3);
+}
+
+/* Formation indicators */
+.formation-indicator {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  font-size: 12px;
+}
+
+.formation-indicator::before {
+  content: '◊';
+  margin-right: 6px;
+  color: #60a5fa;
+}
+
+/* Enemy formation preview */
+.enemy-formation {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin-top: 8px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.enemy-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+.enemy-dot.galaga { background: #ef4444; }
+.enemy-dot.bee { background: #fbbf24; }
+.enemy-dot.butterfly { background: #22c55e; }
+.enemy-dot.boss { background: #8b5cf6; }
+
+/* Stage indicators */
+.stage-progress {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.stage-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #374151;
+  margin-right: 4px;
+}
+
+.stage-dot.completed {
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+}
+
+.stage-dot.current {
+  background: #fbbf24;
+  box-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
+  animation: pulse 2s infinite;
+}
+
+/* Power-up effects */
+@keyframes power-collect {
+  0% {
+    transform: scale(1) rotate(0deg);
+    box-shadow: 0 0 10px currentColor;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    box-shadow: 0 0 20px currentColor;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    box-shadow: 0 0 10px currentColor;
+  }
+}
+
+.power-up-collected {
+  animation: power-collect 0.5s ease-out;
+}
+
+/* Starfield animation */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.star {
+  animation: twinkle 3s infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .galaga-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .galaga-sidebar {
+    min-width: auto;
+    max-width: 600px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .galaga-container canvas {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .galaga-container {
+    padding: 15px;
+  }
+
+  .galaga-sidebar {
+    padding: 20px;
+  }
+}
+
+/* Animation Classes */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.pulse { animation: pulse 2s infinite; }
+.bounce { animation: bounce 1s infinite; }
+
+/* Focus Styles for Accessibility */
+.galaga-controls button:focus,
+.galaga-container canvas:focus {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+/* Selection Styling */
+.galaga-container ::selection {
+  background: rgba(96, 165, 250, 0.3);
+  color: white;
+}

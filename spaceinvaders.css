@@ -1,0 +1,458 @@
+/**
+ * Space Invaders UX Module Styles - Enhanced Edition
+ */
+
+.spaceinvaders-container {
+  display: flex;
+  flex-direction: row;
+  background: linear-gradient(135deg, #001122 0%, #000011 50%, #001100 100%);
+  border: 2px solid #00ff00;
+  border-radius: 8px;
+  padding: 10px;
+  font-family: 'Courier New', monospace;
+  width: 950px;
+  height: 620px;
+  color: #00ff00;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated border effect */
+.spaceinvaders-container::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #00ff00, transparent, #00ff00, transparent, #00ff00);
+  background-size: 400% 400%;
+  border-radius: 10px;
+  z-index: -1;
+  animation: borderGlow 3s ease infinite;
+}
+
+@keyframes borderGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.spaceinvaders-game {
+  margin-right: 15px;
+  position: relative;
+}
+
+#spaceinvaders-board {
+  border: 2px solid #00ff00;
+  background-color: #000;
+  display: block;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+#spaceinvaders-board:focus {
+  outline: none;
+  border-color: #00ffaa;
+  box-shadow:
+    0 0 10px #00ff00,
+    inset 0 0 10px rgba(0, 255, 0, 0.1);
+  animation: canvasPulse 2s infinite alternate;
+}
+
+@keyframes canvasPulse {
+  from {
+    box-shadow:
+      0 0 10px #00ff00,
+      inset 0 0 10px rgba(0, 255, 0, 0.1);
+  }
+  to {
+    box-shadow:
+      0 0 20px #00ff00,
+      0 0 30px rgba(0, 255, 0, 0.3),
+      inset 0 0 15px rgba(0, 255, 0, 0.2);
+  }
+}
+
+.spaceinvaders-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  gap: 15px;
+}
+
+.spaceinvaders-info {
+  background: linear-gradient(135deg, #003300 0%, #002200 100%);
+  border: 1px solid #00ff00;
+  border-radius: 4px;
+  padding: 8px;
+  color: #00ff00;
+  position: relative;
+  overflow: hidden;
+}
+
+.spaceinvaders-info::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -100%;
+  width: 100%;
+  height: calc(100% + 4px);
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+  animation: scanLine 3s linear infinite;
+}
+
+@keyframes scanLine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.spaceinvaders-info > div {
+  margin-bottom: 5px;
+  font-size: 14px;
+  position: relative;
+  z-index: 1;
+}
+
+.spaceinvaders-info span {
+  font-weight: bold;
+  color: #00ffaa;
+  text-shadow: 0 0 5px currentColor;
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+  from { text-shadow: 0 0 5px currentColor; }
+  to { text-shadow: 0 0 10px currentColor, 0 0 15px currentColor; }
+}
+
+.spaceinvaders-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.spaceinvaders-controls button {
+  padding: 8px 12px;
+  border: 1px solid #00ff00;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #003300 0%, #002200 100%);
+  color: #00ff00;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: 'Courier New', monospace;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.spaceinvaders-controls button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.spaceinvaders-controls button:hover::before {
+  left: 100%;
+}
+
+.spaceinvaders-controls button:hover {
+  background: linear-gradient(135deg, #004400 0%, #003300 100%);
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+.spaceinvaders-controls button:active {
+  background: linear-gradient(135deg, #002200 0%, #001100 100%);
+  transform: translateY(1px);
+  box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+}
+
+#si-start-btn {
+  background: linear-gradient(135deg, #006600 0%, #004400 100%);
+  border-color: #00ff00;
+}
+
+#si-start-btn:hover {
+  background: linear-gradient(135deg, #008800 0%, #006600 100%);
+  box-shadow:
+    0 0 15px rgba(0, 255, 0, 0.7),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+#si-pause-btn {
+  background: linear-gradient(135deg, #664400 0%, #443300 100%);
+  color: #ffcc00;
+  border-color: #ffcc00;
+}
+
+#si-pause-btn:hover {
+  background: linear-gradient(135deg, #886600 0%, #664400 100%);
+  box-shadow:
+    0 0 15px rgba(255, 204, 0, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+#si-reset-btn {
+  background: linear-gradient(135deg, #660000 0%, #440000 100%);
+  color: #ff6666;
+  border-color: #ff6666;
+}
+
+#si-reset-btn:hover {
+  background: linear-gradient(135deg, #880000 0%, #660000 100%);
+  box-shadow:
+    0 0 15px rgba(255, 102, 102, 0.5),
+    inset 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+.spaceinvaders-instructions {
+  background: linear-gradient(135deg, #003300 0%, #002200 100%);
+  border: 1px solid #00ff00;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 11px;
+  color: #00ff00;
+  position: relative;
+}
+
+.spaceinvaders-instructions > div {
+  margin-bottom: 3px;
+  position: relative;
+  z-index: 1;
+}
+
+.spaceinvaders-instructions strong {
+  color: #00ffaa;
+  text-shadow: 0 0 3px currentColor;
+}
+
+/* Retro CRT effect */
+.spaceinvaders-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1px,
+      rgba(0, 255, 0, 0.03) 1px,
+      rgba(0, 255, 0, 0.03) 2px
+    );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Responsive adjustments for smaller containers */
+@media (max-width: 1000px) {
+  .spaceinvaders-container {
+    flex-direction: column;
+    width: 820px;
+    height: auto;
+  }
+
+  .spaceinvaders-game {
+    margin-right: 0;
+    margin-bottom: 10px;
+    align-self: center;
+  }
+
+  .spaceinvaders-sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .spaceinvaders-info,
+  .spaceinvaders-controls,
+  .spaceinvaders-instructions {
+    flex: 1 1 120px;
+    min-width: 120px;
+  }
+}
+
+/* Focus styles for accessibility */
+.spaceinvaders-controls button:focus {
+  outline: 2px solid #00ff00;
+  outline-offset: 2px;
+}
+
+/* Canvas container positioning */
+.spaceinvaders-game {
+  position: relative;
+}
+
+/* Game over overlay styling */
+.spaceinvaders-game-over-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #ff0000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  animation: gameOverPulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes gameOverPulse {
+  from {
+    text-shadow: 0 0 10px #ff0000;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  to {
+    text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000;
+    background-color: rgba(255, 0, 0, 0.1);
+  }
+}
+
+/* Enhanced button press effect */
+@keyframes buttonPress {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.spaceinvaders-controls button:active {
+  animation: buttonPress 0.1s ease;
+}
+
+/* Sci-fi data stream effect */
+@keyframes dataStream {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+}
+
+.spaceinvaders-info::before {
+  content: '█ █ █';
+  position: absolute;
+  top: 0;
+  right: 5px;
+  font-size: 8px;
+  color: rgba(0, 255, 0, 0.3);
+  animation: dataStream 2s linear infinite;
+  pointer-events: none;
+}
+
+
+/* Responsive adjustments for smaller containers */
+@media (max-width: 1000px) {
+  .spaceinvaders-container {
+    flex-direction: column;
+    width: 820px;
+    height: auto;
+  }
+
+  .spaceinvaders-game {
+    margin-right: 0;
+    margin-bottom: 10px;
+    align-self: center;
+  }
+
+  .spaceinvaders-sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .spaceinvaders-info,
+  .spaceinvaders-controls,
+  .spaceinvaders-instructions {
+    flex: 1 1 120px;
+    min-width: 120px;
+  }
+}
+
+/* Focus styles for accessibility */
+.spaceinvaders-controls button:focus {
+  outline: 2px solid #00ff00;
+  outline-offset: 2px;
+}
+
+/* Canvas container positioning */
+.spaceinvaders-game {
+  position: relative;
+}
+
+/* Game over overlay (if needed) */
+.spaceinvaders-game-over-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #ff0000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Alien invasion theme */
+.spaceinvaders-container {
+  background: linear-gradient(180deg, #001122 0%, #000011 100%);
+  box-shadow: inset 0 0 20px rgba(0, 255, 0, 0.2);
+}
+
+/* Glowing text effect */
+.spaceinvaders-info span,
+.spaceinvaders-instructions strong {
+  text-shadow: 0 0 3px currentColor;
+}
+
+/* Button glow animation */
+@keyframes buttonGlow {
+  0% { box-shadow: 0 0 5px currentColor; }
+  50% { box-shadow: 0 0 15px currentColor; }
+  100% { box-shadow: 0 0 5px currentColor; }
+}
+
+.spaceinvaders-controls button:hover {
+  animation: buttonGlow 1s infinite;
+}
+
+/* Sci-fi border effect */
+.spaceinvaders-container::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #00ff00, transparent, #00ff00);
+  border-radius: 10px;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+/* Canvas border glow */
+#spaceinvaders-board {
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
